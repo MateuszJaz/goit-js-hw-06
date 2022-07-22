@@ -22,11 +22,16 @@ gallery.style.flexDirection = "column-reverse";
 gallery.style.alignItems = "baseline";
 gallery.style.justifyContent = "center";
 
-const galleryImages = images.forEach((image) => {
-  gallery.insertAdjacentHTML(
-    "afterbegin",
-    `<li class="picture">
-      <img src="${image.url}" alt="${image.alt}" width="300" style ="border-radius: 5px;" /> 
+const galleryImages = () => {
+  for (const image of images) {
+    const liElem = document.createElement("li");
+    liElem.insertAdjacentHTML(
+      "afterbegin",
+      `<li class="picture">
+      <img src="${image.url}" alt="${image.alt}" width="300" style ="border-radius: 5px;" />
     </li>`
-  );
-});
+    );
+    gallery.append(liElem);
+  }
+};
+console.log(galleryImages());
