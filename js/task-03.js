@@ -14,24 +14,24 @@ const images = [
 ];
 
 const gallery = document.querySelector("ul.gallery");
+
 gallery.style.listStyle = "none";
 gallery.style.padding = "0px";
 gallery.style.gap = "10px";
 gallery.style.display = "flex";
-gallery.style.flexDirection = "column-reverse";
+gallery.style.flexDirection = "column";
 gallery.style.alignItems = "baseline";
 gallery.style.justifyContent = "center";
 
-const galleryImages = () => {
-  for (const image of images) {
-    const liElem = document.createElement("li");
-    liElem.insertAdjacentHTML(
-      "afterbegin",
-      `<li class="picture">
-      <img src="${image.url}" alt="${image.alt}" width="300" style ="border-radius: 5px;" />
-    </li>`
-    );
-    gallery.append(liElem);
-  }
-};
-console.log(galleryImages());
+const galleryHTML = images.map((image) => {
+  const listItem = document.createElement("li");
+  listItem.insertAdjacentHTML(
+    "afterbegin",
+    `<img src="${image.url}" alt="${image.alt}" width="300" style ="border-radius: 5px;" />
+      `
+  );
+  listItem.classList.add("item");
+  return listItem;
+});
+
+gallery.append(...galleryHTML);
